@@ -43,34 +43,34 @@ contract GovernorContract is
     return super.votingDelay();
   }
 
-  function votingPeriod()
-    public
-    view
-    override(IGovernor, GovernorSettings)
-    returns (uint256)
-  {
-    return super.votingPeriod();
-  }
+  // function votingPeriod()
+  //   public
+  //   view
+  //   override(IGovernor, GovernorSettings)
+  //   returns (uint256)
+  // {
+  //   return super.votingPeriod();
+  // }
 
-  // The following functions are overrides required by Solidity.
+  // // The following functions are overrides required by Solidity.
 
-  function quorum(uint256 blockNumber)
-    public
-    view
-    override(IGovernor, GovernorVotesQuorumFraction)
-    returns (uint256)
-  {
-    return super.quorum(blockNumber);
-  }
+  // function quorum(uint256 blockNumber)
+  //   public
+  //   view
+  //   override(IGovernor, GovernorVotesQuorumFraction)
+  //   returns (uint256)
+  // {
+  //   return super.quorum(blockNumber);
+  // }
 
-  function getVotes(address account, uint256 blockNumber)
-    public
-    view
-    override(IGovernor, Governor)
-    returns (uint256)
-  {
-    return super.getVotes(account, blockNumber);
-  }
+  // function getVotes(address account, uint256 blockNumber)
+  //   public
+  //   view
+  //   override(IGovernor, Governor)
+  //   returns (uint256)
+  // {
+  //   return super.getVotes(account, blockNumber);
+  // }
 
   function state(uint256 proposalId)
     public
@@ -81,14 +81,14 @@ contract GovernorContract is
     return super.state(proposalId);
   }
 
-  function propose(
-    address[] memory targets,
-    uint256[] memory values,
-    bytes[] memory calldatas,
-    string memory description
-  ) public override(Governor, IGovernor) returns (uint256) {
-    return super.propose(targets, values, calldatas, description);
-  }
+  // function propose(
+  //   address[] memory targets,
+  //   uint256[] memory values,
+  //   bytes[] memory calldatas,
+  //   string memory description
+  // ) public override(Governor, IGovernor) returns (uint256) {
+  //   return super.propose(targets, values, calldatas, description);
+  // }
 
   function proposalThreshold()
     public
