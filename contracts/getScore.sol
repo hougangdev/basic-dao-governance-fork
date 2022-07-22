@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-
+//importing chainlink 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/ChainlinkClient.sol";
 import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/ConfirmedOwner.sol";
@@ -56,7 +56,7 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
     }
 
     
-
+    //update mapping and emit score
     function setUniquenessScores(bytes32 _requestId, uint256 _score)
         public
         recordChainlinkFulfillment(_requestId)
