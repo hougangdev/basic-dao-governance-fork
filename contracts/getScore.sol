@@ -18,15 +18,16 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
     uint256 public score;
     
     //parameters for requestScore()
-    string memory _url;
+    string _url;
     int256 constant _multiply = 1;
-    string memory _path;
+    string _voteraddress;
 
     string constant jobId = "7599d3c8f31e4ce78ad2b790cbcfc673";
 
     //mapping address to score
+    //Need help with the data type string here, supposed to be address
     
-    mapping (address =>  uint256) public _uniquenessScores;
+    mapping (string =>  uint256) public _uniquenessScores;
 
     event RequestScore(bytes32 indexed requestId, uint256 indexed score);
 
@@ -39,11 +40,7 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
 
     //Get's score from json file in ipfs
     //@dev: _url is the CID to ipfs
-    function requestScore(
-        _url,
-        _multiply,
-        _voteraddress
-    ) public onlyOwner returns (bytes32 requestId) {
+    function requestScore() public onlyOwner returns (bytes32 requestId) {
         Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(jobId),
             address(this),
@@ -61,7 +58,8 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
         public
         recordChainlinkFulfillment(_requestId)
     {
-        req(_score >= 0 && <= 100);
+        require(_score <= 100);
+        require(_score >= 0);
         emit RequestScore(_requestId, _score);
         score = _score;
         
