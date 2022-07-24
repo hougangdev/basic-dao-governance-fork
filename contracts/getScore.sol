@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-
+//README: add to to the same directory as Governor.sol node_modules/@openzeppelin/contracts/governance/
 pragma solidity ^0.8.0;
 
 //importing chainlink 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/ChainlinkClient.sol";
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/ConfirmedOwner.sol";
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 
 
 contract getScore is ChainlinkClient, ConfirmedOwner {
@@ -24,10 +24,8 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
 
     string constant jobId = "7599d3c8f31e4ce78ad2b790cbcfc673";
 
-    //mapping address to score
-    //Need help with the data type string here, supposed to be address
     
-    mapping (string =>  uint256) public _uniquenessScores;
+    //Need help with the data type string here, supposed to be address
 
     event RequestScore(bytes32 indexed requestId, uint256 indexed score);
 
@@ -63,8 +61,6 @@ contract getScore is ChainlinkClient, ConfirmedOwner {
         emit RequestScore(_requestId, _score);
         score = _score;
         
-        //updating mapping
-        _uniquenessScores[_voteraddress] = _score;
     }
 
     function stringToBytes32(string memory source)
